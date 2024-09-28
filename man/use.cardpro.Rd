@@ -9,7 +9,8 @@ use.cardpro(
   jquery = FALSE,
   jqueryui = TRUE,
   fontawesome = FALSE,
-  template = "bundle"
+  template = "bundle",
+  fix.header = FALSE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ use.cardpro(
 \item{fontawesome}{option. logical. include fontawesome}
 
 \item{template}{template folder}
+
+\item{fix.header}{logical. fix header if titlePanel2() is used in UI}
 }
 \value{
 A list of files to be inserted in the header of a page

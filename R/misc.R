@@ -23,6 +23,7 @@ row <- function(...) {
 #' @param jquery option. logical. include jquery
 #' @param jqueryui option. logical. include jquery UI
 #' @param fontawesome option. logical. include fontawesome
+#' @param fix.header logical. fix header if titlePanel2() is used in UI
 #'
 #' @return A list of files to be inserted in the header of a page
 #' @examples
@@ -37,7 +38,10 @@ use.cardpro <-
            jquery = FALSE,
            jqueryui = TRUE,
            fontawesome = FALSE,
-           template = "bundle") {
+           template = "bundle",
+           fix.header = FALSE
+           ) {
+    fxhdr = ifelse(fix.header," fixed-header","")
     p.v = 2.1
     j = ju = fa = NULL
     if (jquery)
@@ -48,7 +52,7 @@ use.cardpro <-
     list(
       htmltools::tags$script(
         paste0(
-          "document.body.className = document.body.className+' smart-style-",
+          "document.body.className = document.body.className+'",fxhdr," fixed-page-footer smart-style-",
           switch (
             theme,
             a = "1';",
@@ -59,8 +63,8 @@ use.cardpro <-
           )
         )
       ),
-      htmltools::tags$script(src="myscript.js"),
-      htmltools::tags$script(href="myscript.css"),
+      if(file.exists("www/myscript.js")){htmltools::tags$script(src="myscript.js")},
+      if(file.exists("www/myscript.css")){htmltools::tags$link(href="myscript.css")},
       htmltools::tags$link(
         href = ifelse(
           fontawesome,
@@ -176,5 +180,50 @@ tabEntry <- function(title, ...) {
     unit = quickcode::number(1, max.digits = 4),
     title = title,
     content = htmltools::div(...)
+  )
+}
+
+
+#' Create a title and footer bar
+#'
+#' Create an alternative title bar
+#'
+#' @param title title of the tab
+#' @param rightContent content of the right
+#' @param windowTitle window title
+#' @param bg.col background color
+#' @param text.col text color
+#'
+#' @return An list containing the title and content of a header or footer
+#' @rdname header-footer
+#' @examples
+#' if (interactive()) {
+#' titlePanel2("Main title", "Right content | About me")
+#' titlePanel2("Main title", action)
+#' }
+#'
+#' @export
+#'
+titlePanel2 <- function(title, rightContent = NULL, windowTitle = title , text.col = "#2a2725", bg.col = "#ffffff") {
+  htmltools::tags$header(id ="header", class = "cardpro-titlepanel", style = paste0("min-height: 70px;border-width:0!important;background:",bg.col,";color: ",text.col),
+    shiny::h2(style="width: 100%;padding-left:10px",
+      shiny::div(style="width: 100%; ",title, shiny::div(class="hidden-mobile hidden-tablet pull-right",rightContent))
+    )
+  )
+}
+
+
+
+#' @rdname header-footer
+#' @examples
+#' if (interactive()) {
+#' footerPanel("Main footer @ 2024. All rights reserved", "Contact us")
+#' }
+#'
+#' @export
+#'
+footerPanel <- function(title = shiny::HTML("&copy; 2024"), rightContent = NULL, bg.col = "#2a2725", text.col = "#f5f5f5") {
+  htmltools::tags$div(class = "page-footer", style = paste0("background:",bg.col,";color: ",text.col),
+                        shiny::div(title, shiny::div(class="hidden-mobile hidden-tablet pull-right",rightContent))
   )
 }
