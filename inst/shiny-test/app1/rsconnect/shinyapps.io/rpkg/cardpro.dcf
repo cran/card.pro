@@ -1,0 +1,13 @@
+name: cardpro
+title: cardpro
+username:
+account: rpkg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12861468
+bundleId: 9532967
+url: https://rpkg.shinyapps.io/cardpro/
+when: 1734423290.42161
+lastSyncTime: 1734423290.42161
+asMultiple: FALSE
+asStatic: FALSE
