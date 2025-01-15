@@ -1,7 +1,7 @@
 Package: card.pro
 Type: Package
 Title: Lightweight Modern & Responsive Card Component for 'shiny'
-Version: 2.2.1
+Version: 2.3.0
 Authors@R: c(
     person("Obinna", "Obianom", email = "idonshayo@gmail.com", role = c("aut", "cre"))
     )
@@ -20,7 +20,7 @@ LazyData: false
 RoxygenNote: 7.2.3
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-12-17 08:18:28 UTC; in198
+Packaged: 2025-01-15 17:16:37 UTC; in198
 Author: Obinna Obianom [aut, cre]
 Repository: CRAN
-Date/Publication: 2024-12-17 08:40:02 UTC
+Date/Publication: 2025-01-15 17:30:02 UTC

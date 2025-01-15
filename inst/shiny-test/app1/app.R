@@ -5,11 +5,16 @@ library(card.pro)
 ui <- fluidPage(
   use.cardpro(theme = "a", fix.header = TRUE),
   moveable(
-    tags$h2("   card.pro package: shiny 2.0 Built to your specifications..."),
-    tags$h4("   drag, resize, rearrage and refresh. your settings preserved!"),
+    tags$h2("card.pro package: shiny 2.0 Built to your specifications..."),
+    tags$h4(class ="c-purple","drag, resize, rearrage and refresh. your settings preserved!"),
     tags$hr(),
     card.pro(
-      "This is the setup",
+      tags$p("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+      progressInput(id="id1", label = "TRACK the progress", striped = TRUE),
+      progressInput(id="id2", value = "90%", color = "green"),
+      progressInput(id="id3", value = "45%", color = "blue", size = "s"),
+      alert.text = "Here is an alert functionality",
+      alert.type = "danger",
       tabs = list(
         tabEntry(
           "Main",
@@ -26,6 +31,10 @@ ui <- fluidPage(
           textInput("nor1", "Enter name"), "Content for 1",
           actionButton("nor1", "Try click"), "sample"
         )
+      ),
+      collapsibleGroup = list(
+        collapseEntry(title = "Setup collapsible 1", "Convallis aesus."),
+        collapseEntry(title = "Setup collapsible2", collapsed = TRUE, "nextGenShinyApps.")
       ),
       title = "Analysis Setup",
       width = 3,
@@ -54,6 +63,10 @@ ui <- fluidPage(
       title = "Summary table",
       width = 3,
       header.bg = "red",
+      collapsibleGroup = list(
+        collapseEntry(title = "Summary 1", collapsed = TRUE, "eiusmod tempor incididunt"),
+        collapseEntry(title = "Summary 2", collapsed = TRUE, "Lorem ipsum dolor sit amet")
+      ),
       footer = "Here is a sample footer for descriptions"
     )
   )
